@@ -44,4 +44,9 @@ public class PropertyServiceImpl implements PropertyService {
         property.setUpdateDate(new Date());
         propertyDao.update(property);
     }
+
+    @Override
+    public void delete(Integer id) {
+        propertyDao.delete(id);
+    }
 }

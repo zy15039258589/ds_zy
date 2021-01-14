@@ -5,10 +5,8 @@ import com.fh.entity.vo.PageResult;
 import com.fh.entity.vo.PropertyParams;
 import com.fh.entity.vo.ResultData;
 import com.fh.service.PropertyService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Delete;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -44,6 +42,14 @@ public class PropertyController {
             propertyService.update(property);
             return ResultData.success(null);
         }
+    }
+    @DeleteMapping("delete")
+    public ResultData delete(Integer id){
+        if(id==null){
+            return ResultData.error(400,"非法请求");
+        }
+        propertyService.delete(id);
+        return ResultData.success(null);
     }
 
 

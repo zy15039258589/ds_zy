@@ -28,4 +28,6 @@ public interface PropertyDao {
     @Update("update ds_property set name=#{name},nameCH=#{nameCH},typeId=#{typeId}," +
             " type=#{type},isSKU=#{isSKU},isDel=#{isDel},author=#{author},updateDate=#{updateDate} where id=#{id}")
     void update(Property property);
+    @Update("update ds_property set isDel=1 where id=#{id}")
+    void delete(Integer id);
 }
