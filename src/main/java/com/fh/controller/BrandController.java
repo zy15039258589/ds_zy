@@ -18,6 +18,7 @@ import java.util.UUID;
 @CrossOrigin
 @RequestMapping("BrandController")
 public class BrandController {
+
     @Resource
     BrandService brandService;
 
