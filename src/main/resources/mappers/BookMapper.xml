@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fh.dao.TypeDao">
+        <insert id="add" parameterType="com.fh.entity.po.Type" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+            insert into ds_type (name,pid,createDate,isDel) value(#{name},#{pid},#{createDate},#{isDel})
+        </insert>
+</mapper>
