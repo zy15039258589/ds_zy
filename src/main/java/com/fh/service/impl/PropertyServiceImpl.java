@@ -35,4 +35,13 @@ public class PropertyServiceImpl implements PropertyService {
         property.setCreateDate(new Date());
         propertyDao.add(property);
     }
+
+    @Override
+    public void update(Property property) {
+        if(property.getIsDel()==null){
+            property.setIsDel(0);
+        }
+        property.setUpdateDate(new Date());
+        propertyDao.update(property);
+    }
 }

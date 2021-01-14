@@ -8,4 +8,6 @@ public interface PropertyService {
     PageResult getData(PropertyParams params);
 
     void add(Property property);
+
+    void update(Property property);
 }

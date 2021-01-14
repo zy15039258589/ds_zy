@@ -36,6 +36,16 @@ public class PropertyController {
         propertyService.add(property);
         return ResultData.success(null);
     }
+    @PostMapping("update")
+    public ResultData update(Property property){
+        if(property.getId()==null){
+            return ResultData.error(500,"没传id");
+        }else{
+            propertyService.update(property);
+            return ResultData.success(null);
+        }
+    }
+
 
 
 }

@@ -5,6 +5,7 @@ import com.fh.entity.vo.PropertyParams;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -24,4 +25,7 @@ public interface PropertyDao {
     @Insert("insert into ds_property (name,nameCH,typeId,type,isSKU,isDel,createDate,author)" +
             " value(#{name},#{nameCH},#{typeId},#{type},#{isSKU},#{isDel},#{createDate},#{author})")
     void add(Property property);
+    @Update("update ds_property set name=#{name},nameCH=#{nameCH},typeId=#{typeId}," +
+            " type=#{type},isSKU=#{isSKU},isDel=#{isDel},author=#{author},updateDate=#{updateDate} where id=#{id}")
+    void update(Property property);
 }
