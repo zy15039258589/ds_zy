@@ -2,6 +2,7 @@ package com.fh.dao;
 
 import com.fh.entity.po.Property;
 import com.fh.entity.vo.PropertyParams;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -20,4 +21,7 @@ public interface PropertyDao {
             " limit  #{startIndex},#{limit}" +
             "</script>")
     List<Property> getDataList(PropertyParams params);
+    @Insert("insert into ds_property (name,nameCH,typeId,type,isSKU,isDel,createDate,author)" +
+            " value(#{name},#{nameCH},#{typeId},#{type},#{isSKU},#{isDel},#{createDate},#{author})")
+    void add(Property property);
 }

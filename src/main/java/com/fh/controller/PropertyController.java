@@ -1,7 +1,9 @@
 package com.fh.controller;
 
+import com.fh.entity.po.Property;
 import com.fh.entity.vo.PageResult;
 import com.fh.entity.vo.PropertyParams;
+import com.fh.entity.vo.ResultData;
 import com.fh.service.PropertyService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,11 @@ public class PropertyController {
     public PageResult getDate(PropertyParams params){
         PageResult result=propertyService.getData(params);
         return result;
+    }
+    @PostMapping("add")
+    public ResultData add(Property property){
+        propertyService.add(property);
+        return ResultData.success(null);
     }
 
 

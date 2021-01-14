@@ -8,6 +8,7 @@ import com.fh.service.PropertyService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,5 +27,12 @@ public class PropertyServiceImpl implements PropertyService {
         result.setCode(0);
         result.setMsg("");
         return result;
+    }
+
+    @Override
+    public void add(Property property) {
+        property.setIsDel(0);
+        property.setCreateDate(new Date());
+        propertyDao.add(property);
     }
 }
