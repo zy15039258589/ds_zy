@@ -1,6 +1,7 @@
 package com.fh.dao;
 
 import com.fh.entity.po.Property;
+import com.fh.entity.po.Type;
 import com.fh.entity.vo.PropertyParams;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,4 +31,7 @@ public interface PropertyDao {
     void update(Property property);
     @Update("update ds_property set isDel=1 where id=#{id}")
     void delete(Integer id);
+
+    @Select("select * from ds_type")
+    List<Type> queryType();
 }

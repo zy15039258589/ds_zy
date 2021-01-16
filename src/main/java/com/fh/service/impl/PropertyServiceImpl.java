@@ -2,6 +2,7 @@ package com.fh.service.impl;
 
 import com.fh.dao.PropertyDao;
 import com.fh.entity.po.Property;
+import com.fh.entity.po.Type;
 import com.fh.entity.vo.PageResult;
 import com.fh.entity.vo.PropertyParams;
 import com.fh.service.PropertyService;
@@ -48,5 +49,11 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public void delete(Integer id) {
         propertyDao.delete(id);
+    }
+
+    @Override
+    public List<Type> queryType() {
+        List<Type> list=propertyDao.queryType();
+        return list;
     }
 }

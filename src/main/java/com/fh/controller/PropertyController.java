@@ -1,6 +1,7 @@
 package com.fh.controller;
 
 import com.fh.entity.po.Property;
+import com.fh.entity.po.Type;
 import com.fh.entity.vo.PageResult;
 import com.fh.entity.vo.PropertyParams;
 import com.fh.entity.vo.ResultData;
@@ -9,6 +10,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("PropertyController")
@@ -50,6 +52,12 @@ public class PropertyController {
         }
         propertyService.delete(id);
         return ResultData.success(null);
+    }
+
+    @RequestMapping("queryType")
+    public ResultData queryType(){
+        List<Type> list=propertyService.queryType();
+        return  ResultData.success(list);
     }
 
 
