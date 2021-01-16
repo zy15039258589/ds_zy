@@ -45,7 +45,7 @@ public class PropertyController {
             return ResultData.success(null);
         }
     }
-    @DeleteMapping("delete")
+    @GetMapping("delete")
     public ResultData delete(Integer id){
         if(id==null){
             return ResultData.error(400,"非法请求");
