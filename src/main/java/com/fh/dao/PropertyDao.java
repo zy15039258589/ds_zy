@@ -13,12 +13,12 @@ import java.util.List;
 public interface PropertyDao {
     @Select("<script>" +
             "select count(*) from ds_property where isDel=0 " +
-            " <if test='name!=null and name!=&quot;&quot;'> and name=#{name} </if> " +
+            " <if test='name!=null and name!=&quot;&quot;'> and nameCH=#{name} </if> " +
             "</script>")
     Long getDataCount(PropertyParams params);
     @Select("<script>" +
             "select * from ds_property where isDel=0" +
-            "<if test='name!=null and name!=&quot;&quot;'> and name=#{name} </if>" +
+            "<if test='name!=null and name!=&quot;&quot;'> and nameCH=#{name} </if>" +
             " limit  #{startIndex},#{limit}" +
             "</script>")
     List<Property> getDataList(PropertyParams params);
