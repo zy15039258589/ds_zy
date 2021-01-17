@@ -5,13 +5,16 @@ import com.fh.entity.vo.BrandParams;
 import com.fh.entity.vo.PageResult;
 import com.fh.entity.vo.ResultData;
 import com.fh.service.BrandService;
+import com.fh.utils.OssFileUtils_zy;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 @RestController
@@ -48,19 +51,11 @@ public class BrandController {
     }
     @RequestMapping("imgAdd")
     public String imgAdd(MultipartFile file, HttpServletRequest request) throws IOException {
-        String realPath = request.getServletContext().getRealPath("/images");
-        File f=new File(realPath);
-        if(f.exists()==false){
-            f.mkdir();
-        }
-        UUID uuid = UUID.randomUUID();
         String originalFilename = file.getOriginalFilename();
         int i = originalFilename.lastIndexOf(".");
         String substring = originalFilename.substring(i);
-        String imgUrl=uuid+substring;
-        File imgFile=new File(realPath+"/"+imgUrl);
-        file.transferTo(imgFile);
-        String imgPath="http://192.168.1.220:8080/images"+"/"+imgUrl;
+        String fileName=UUID.randomUUID()+substring;
+         String imgPath = OssFileUtils_zy.uploadFile(file.getInputStream(),fileName);
         return imgPath;
     }
 
