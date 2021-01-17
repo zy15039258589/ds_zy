@@ -29,5 +29,10 @@ public class ValueController {
         valueService.add(value);
         return ResultData.success(null);
     }
+    @PostMapping("update")
+    public ResultData update(Value value){
+        valueService.update(value);
+        return ResultData.success(null);
+    }
 
 }

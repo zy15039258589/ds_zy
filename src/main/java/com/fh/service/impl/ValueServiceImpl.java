@@ -23,4 +23,9 @@ public class ValueServiceImpl implements ValueService {
     public void add(Value value) {
         valueDao.add(value);
     }
+
+    @Override
+    public void update(Value value) {
+        valueDao.update(value);
+    }
 }

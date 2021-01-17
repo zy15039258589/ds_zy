@@ -9,4 +9,6 @@ public interface ValueService {
     List<Value> getData(Integer id);
 
     void add(Value value);
+
+    void update(Value value);
 }
