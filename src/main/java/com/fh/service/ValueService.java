@@ -7,4 +7,6 @@ import java.util.List;
 public interface ValueService {
 
     List<Value> getData(Integer id);
+
+    void add(Value value);
 }

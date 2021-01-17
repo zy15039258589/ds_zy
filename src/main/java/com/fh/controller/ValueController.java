@@ -3,10 +3,7 @@ package com.fh.controller;
 import com.fh.entity.po.Value;
 import com.fh.entity.vo.ResultData;
 import com.fh.service.ValueService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,6 +23,11 @@ public class ValueController {
         }
         List<Value> list=valueService.getData(id);
         return ResultData.success(list);
+    }
+    @PostMapping("add")
+    public ResultData add(Value value){
+        valueService.add(value);
+        return ResultData.success(null);
     }
 
 }
