@@ -9,6 +9,8 @@ public class Value {
 
     private Integer propertyId;
 
+    private int   isDel;
+
     public Integer getId() {
         return id;
     }
@@ -31,6 +33,14 @@ public class Value {
 
     public void setValueCH(String valueCH) {
         this.valueCH = valueCH;
+    }
+
+    public int getIsDel() {
+        return isDel;
+    }
+
+    public void setIsDel(int isDel) {
+        this.isDel = isDel;
     }
 
     public Integer getPropertyId() {

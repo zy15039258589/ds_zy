@@ -34,5 +34,9 @@ public class ValueController {
         valueService.update(value);
         return ResultData.success(null);
     }
-
+    @GetMapping("delete")
+    public ResultData delete(Integer id){
+        valueService.delete(id);
+        return ResultData.success(null);
+    }
 }

@@ -11,4 +11,6 @@ public interface ValueService {
     void add(Value value);
 
     void update(Value value);
+
+    void delete(Integer id);
 }
