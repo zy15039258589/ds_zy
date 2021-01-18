@@ -12,7 +12,7 @@ import java.util.List;
 public interface ValueDao {
     @Select("select * from ds_value where propertyId=#{propertyId} and isDel=0")
     List<Value> getData(Integer propertyId);
-    @Insert("insert into ds_value (value,valueCH,propertyId) value(#{value},#{valueCH},#{propertyId})")
+    @Insert("insert into ds_value (value,valueCH,propertyId,isDel) value(#{value},#{valueCH},#{propertyId},#{isDel})")
     void add(Value value);
     @Update("update ds_value set value=#{value},valueCH=#{valueCH},propertyId=#{propertyId} where id=#{id}")
     void update(Value value);
