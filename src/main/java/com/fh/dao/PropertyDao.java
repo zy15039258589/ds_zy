@@ -32,6 +32,8 @@ public interface PropertyDao {
     @Update("update ds_property set isDel=1 where id=#{id}")
     void delete(Integer id);
 
-    @Select("select * from ds_type")
+    @Select("select * from ds_type where isDel=0")
     List<Type> queryType();
+    @Select("select * from ds_property where typeId=#{typeId}")
+    List<Property> queryTypeByTypeId(Integer typeId);
 }

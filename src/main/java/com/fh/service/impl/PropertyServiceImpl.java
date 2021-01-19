@@ -56,4 +56,10 @@ public class PropertyServiceImpl implements PropertyService {
         List<Type> list=propertyDao.queryType();
         return list;
     }
+
+    @Override
+    public List<Property> queryTypeByTypeId(Integer typeId) {
+        List<Property> list=propertyDao.queryTypeByTypeId(typeId);
+        return list;
+    }
 }

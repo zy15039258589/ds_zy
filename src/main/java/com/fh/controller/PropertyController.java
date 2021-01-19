@@ -59,6 +59,11 @@ public class PropertyController {
         List<Type> list=propertyService.queryType();
         return  ResultData.success(list);
     }
+    @RequestMapping("queryTypeByTypeId")
+    public ResultData queryTypeByTypeId(Integer typeId){
+        List<Property> list=propertyService.queryTypeByTypeId(typeId);
+        return ResultData.success(list);
+    }
 
 
 

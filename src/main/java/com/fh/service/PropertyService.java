@@ -17,4 +17,6 @@ public interface PropertyService {
     void delete(Integer id);
 
     List<Type> queryType();
+
+    List<Property> queryTypeByTypeId(Integer typeId);
 }

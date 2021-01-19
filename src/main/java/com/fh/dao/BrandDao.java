@@ -29,4 +29,6 @@ public interface BrandDao {
     void addBrand(Brand brand);
     @Update("update ds_brand set isdel=1 where id=#{id}")
     void delete(Integer id);
+    @Select("select * from ds_brand where isDel=0")
+    List<Brand> queryBrand();
 }

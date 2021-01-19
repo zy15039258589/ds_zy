@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -57,6 +58,11 @@ public class BrandController {
         String fileName=UUID.randomUUID()+substring;
          String imgPath = OssFileUtils_zy.uploadFile(file.getInputStream(),fileName);
         return imgPath;
+    }
+    @RequestMapping("queryBrand")
+    public ResultData queryBrand(){
+        List<Brand> list =brandService.queryBrand();
+        return ResultData.success(list);
     }
 
 

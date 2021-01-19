@@ -4,6 +4,8 @@ import com.fh.entity.po.Brand;
 import com.fh.entity.vo.BrandParams;
 import com.fh.entity.vo.PageResult;
 
+import java.util.List;
+
 public interface BrandService {
     PageResult getBrandDate(BrandParams params);
 
@@ -12,4 +14,6 @@ public interface BrandService {
     void addBrand(Brand brand);
 
     void delete(Integer id);
+
+    List<Brand> queryBrand();
 }
