@@ -1,6 +1,8 @@
 package com.fh.controller;
 
 import com.fh.entity.po.Goods;
+import com.fh.entity.vo.BrandParams;
+import com.fh.entity.vo.PageResult;
 import com.fh.entity.vo.ResultData;
 import com.fh.service.GoodsService;
 import org.springframework.web.bind.annotation.*;
@@ -36,4 +38,9 @@ public class GoodsController {
         return  ResultData.success(null);
     }
 
+    @PostMapping("selectGoods")
+    public PageResult  selectGoods(BrandParams params){
+        PageResult result=goodsService.selectGoods(params);
+        return result;
+    }
 }

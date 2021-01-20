@@ -1,9 +1,13 @@
 package com.fh.dao;
 
 import com.fh.entity.po.Goods;
+import com.fh.entity.vo.BrandParams;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface GoodsDao {
@@ -16,4 +20,15 @@ public interface GoodsDao {
     void updateGoods(Goods goods);
     @Update("update ds_goods set isDel=1 where id=#{id}")
     void deleteGoods(Integer id);
+    @Select("<script>" +
+            "select count(*) from ds_goods where 1=1" +
+             "<if test='name!=null and name!=&quot;&quot;'>and name=#{name} </if>"+
+            "</script>")
+    Long selectGoodsCount(BrandParams params);
+    @Select("<script>" +
+            "select * from ds_goods where 1=1" +
+            "<if test='name!=null and name!=&quot;&quot;'>and name=#{name} </if>"+
+            " limit  #{startIndex},#{limit}"+
+            "</script>")
+    List<Goods> selectGoodsList(BrandParams params);
 }
