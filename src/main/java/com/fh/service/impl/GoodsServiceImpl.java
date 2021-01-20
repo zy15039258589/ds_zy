@@ -18,4 +18,15 @@ public class GoodsServiceImpl implements GoodsService {
         goods.setCreateDate(new Date());
         goodsDao.addGoods(goods);
     }
+
+    @Override
+    public void updateGoods(Goods goods) {
+        goods.setUpdateDate(new Date());
+        goodsDao.updateGoods(goods);
+    }
+
+    @Override
+    public void deleteGoods(Integer id) {
+        goodsDao.deleteGoods(id);
+    }
 }

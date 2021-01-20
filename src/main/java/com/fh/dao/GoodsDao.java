@@ -3,10 +3,17 @@ package com.fh.dao;
 import com.fh.entity.po.Goods;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface GoodsDao {
-    @Insert("insert  into ds_goods  (name,title,bandId,typeId,productdecs,price,imgPath,stocks,sortNum,createDate,updateDate,author,isDel)" +
-            " value(#{name},#{title},#{bandId},#{typeId},#{productdecs},#{price},#{imgPath},#{stocks},#{sortNum},#{createDate},#{updateDate},#{author},#{isDel})")
+    @Insert("insert  into ds_goods  (name,title,bandId,typeId,productdecs,price,imgPath,stocks,sortNum,createDate,author,isDel)" +
+            " value(#{name},#{title},#{bandId},#{typeId},#{productdecs},#{price},#{imgPath},#{stocks},#{sortNum},#{createDate},#{author},#{isDel})")
    void addGoods(Goods goods);
+    @Update("update ds_goods set name=#{name},title=#{title},bandId=#{bandId},typeId=#{typeId}," +
+            "productdecs=#{productdecs},price=#{price},imgPath=#{imgPath},stocks=#{stocks},sortNum=#{sortNum},createDate=#{createDate},updateDate=#{updateDate},author=#{author}" +
+            " where id=#{id}")
+    void updateGoods(Goods goods);
+    @Update("update ds_goods set isDel=1 where id=#{id}")
+    void deleteGoods(Integer id);
 }
