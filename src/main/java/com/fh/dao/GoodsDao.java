@@ -1,11 +1,9 @@
 package com.fh.dao;
 
 import com.fh.entity.po.Goods;
+import com.fh.entity.po.GoodsProperty;
 import com.fh.entity.vo.BrandParams;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -13,7 +11,8 @@ import java.util.List;
 public interface GoodsDao {
     @Insert("insert  into ds_goods  (name,title,bandId,typeId,productdecs,price,imgPath,stocks,sortNum,createDate,author,isDel)" +
             " value(#{name},#{title},#{bandId},#{typeId},#{productdecs},#{price},#{imgPath},#{stocks},#{sortNum},#{createDate},#{author},#{isDel})")
-   void addGoods(Goods goods);
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+   int addGoods(Goods goods);
     @Update("update ds_goods set name=#{name},title=#{title},bandId=#{bandId},typeId=#{typeId}," +
             "productdecs=#{productdecs},price=#{price},imgPath=#{imgPath},stocks=#{stocks},sortNum=#{sortNum},createDate=#{createDate},updateDate=#{updateDate},author=#{author}" +
             " where id=#{id}")
@@ -31,4 +30,11 @@ public interface GoodsDao {
             " limit  #{startIndex},#{limit}"+
             "</script>")
     List<Goods> selectGoodsList(BrandParams params);
+
+
+    @Insert("<script>insert into ds_goods_property (proId,attrData,storcks,price)" +
+            "values <foreach collection='list' item='a' separator=','>(#{a.proId},#{a.attrData},#{a.storcks},#{a.price}) "+
+            "</foreach>"+
+            "</script>")
+    void addGoodsOrProper(List<GoodsProperty> list);
 }

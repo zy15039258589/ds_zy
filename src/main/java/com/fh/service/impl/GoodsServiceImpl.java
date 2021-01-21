@@ -1,13 +1,18 @@
 package com.fh.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.fh.dao.GoodsDao;
 import com.fh.entity.po.Goods;
+import com.fh.entity.po.GoodsProperty;
 import com.fh.entity.vo.BrandParams;
 import com.fh.entity.vo.PageResult;
 import com.fh.service.GoodsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,5 +48,42 @@ public class GoodsServiceImpl implements GoodsService {
         result.setData(list);
         result.setCount(count);
         return result;
+    }
+
+    @Override
+    @Transactional  //加上事务   什么是事务
+    public void addGoodsOrProper(Goods goods, String noSku, String sku) {
+        goods.setCreateDate(new Date());
+        goodsDao.addGoods(goods);
+        List<GoodsProperty> gpList=new ArrayList<>();
+        //处理非sku数据
+        JSONArray noSkuArr = JSONObject.parseArray(noSku);
+        for (int i = 0; i <noSkuArr.size() ; i++) {
+            //构建属性数据对象
+            GoodsProperty gp=new GoodsProperty();
+            //设置对应的商品id
+            gp.setProId(goods.getId());
+            //处理传过来的json对象数据
+            gp.setAttrData(noSkuArr.get(i).toString());
+            gpList.add(gp);
+        }
+        JSONArray skuArr = JSONObject.parseArray(sku);
+        for (int i = 0; i <skuArr.size() ; i++) {
+            JSONObject dataJs= (JSONObject) skuArr.get(i);
+            //构建属性数据对象
+            GoodsProperty gp2=new GoodsProperty();
+            //设置对应的商品id
+            gp2.setProId(goods.getId());
+            //根据key获取value值
+            gp2.setPrice(dataJs.getDouble("price"));
+            gp2.setStorcks(dataJs.getInteger("stocks"));
+            //先把价格和库存取出来删了在新增数据
+            dataJs.remove("price");
+            dataJs.remove("stocks");
+            //新增数据
+            gp2.setAttrData(skuArr.get(i).toString());
+            gpList.add(gp2);
+        }
+        goodsDao.addGoodsOrProper(gpList);
     }
 }

@@ -43,4 +43,10 @@ public class GoodsController {
         PageResult result=goodsService.selectGoods(params);
         return result;
     }
+
+    @PostMapping("addGoodsOrProper")
+    public ResultData addGoodsOrProper(Goods goods,String noSku,String sku){
+        goodsService.addGoodsOrProper(goods,noSku,sku);
+        return ResultData.success(null);
+    }
 }

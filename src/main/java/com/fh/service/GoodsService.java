@@ -12,4 +12,6 @@ public interface GoodsService {
     void deleteGoods(Integer id);
 
     PageResult selectGoods(BrandParams params);
+
+    void addGoodsOrProper(Goods goods, String noSku, String sku);
 }
