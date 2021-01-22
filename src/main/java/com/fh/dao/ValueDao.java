@@ -1,5 +1,6 @@
 package com.fh.dao;
 
+import com.fh.entity.po.Property;
 import com.fh.entity.po.Value;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,4 +19,6 @@ public interface ValueDao {
     void update(Value value);
     @Update("update ds_value set isDel=1 where id=#{id}")
     void delete(Integer id);
+    @Select("select * from ds_property  where typeId=#{typeId}")
+    List<Property> queryByTypeId(Integer typeId);
 }
