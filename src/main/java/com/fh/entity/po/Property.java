@@ -23,6 +23,17 @@ public class Property {
 
     private String author;
 
+    private Object values;
+
+    private Object ckvalue;
+
+    public Object getCkvalue() {
+        return ckvalue;
+    }
+
+    public void setCkvalue(Object ckvalue) {
+        this.ckvalue = ckvalue;
+    }
 
     public Integer getId() {
         return id;
@@ -58,6 +69,14 @@ public class Property {
 
     public Integer getType() {
         return type;
+    }
+
+    public Object getValues() {
+        return values;
+    }
+
+    public void setValues(Object values) {
+        this.values = values;
     }
 
     public void setType(Integer type) {

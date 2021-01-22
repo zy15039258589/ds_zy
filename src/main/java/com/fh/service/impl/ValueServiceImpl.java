@@ -50,30 +50,28 @@ public class ValueServiceImpl implements ValueService {
         List<Property> list=valueDao.queryByTypeId(typeId);
         for (int i = 0; i <list.size() ; i++) {
             //判断不是文本框的时候在通过属性id查询出属性对应的值
-            if(list.get(i).getType()!=3 && list.get(i).getIsSKU()==0){
-                 Map map2=new HashMap();
-                map2.put("name",list.get(i).getName());
-                map2.put("nameCH",list.get(i).getNameCH());
-                map2.put("typeId",list.get(i).getTypeId());
-                map2.put("type",list.get(i).getType());
-                map2.put("isSKU",list.get(i).getIsSKU());
-                map2.put("isDel",list.get(i).getIsDel());
-                //所有的sku属性的属性值
+            if(list.get(i).getIsSKU()==0){
+                Property property=new Property();
+                property=list.get(i);
+                List ckvalue=new ArrayList();
+                property.setCkvalue(ckvalue);
                 List<Value>  values = valueDao.getData(list.get(i).getId());
-                map2.put("values",values);
-                sku.add(map2);
+                property.setValues(values);
+                sku.add(property);
             }
-            if(list.get(i).getType()!=3 && list.get(i).getIsSKU()==1){
-                Map map2=new HashMap();
-                map2.put("name",list.get(i).getName());
-                map2.put("nameCH",list.get(i).getNameCH());
-                map2.put("typeId",list.get(i).getTypeId());
-                map2.put("type",list.get(i).getType());
-                map2.put("isSKU",list.get(i).getIsSKU());
-                map2.put("isDel",list.get(i).getIsDel());
+            if(list.get(i).getIsSKU()==1){
+                //获取值数据
                 List<Value>  values= valueDao.getData(list.get(i).getId());
-                map2.put("values",values);
-                noSku.add(map2);
+                //声明一个对象
+                Property property=new Property();
+                //给对象赋值
+                property=list.get(i);
+                //创建一个空的集合
+                List ckvalue=new ArrayList();
+                //给定义的属性赋一个空数组
+                property.setCkvalue(ckvalue);
+                property.setValues(values);
+                noSku.add(property);
             }
         }
         map.put("skuData",sku);
