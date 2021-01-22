@@ -86,4 +86,10 @@ public class GoodsServiceImpl implements GoodsService {
         }
         goodsDao.addGoodsOrProper(gpList);
     }
+
+    @Override
+    public List<GoodsProperty> queryByProId(Integer proId) {
+        List<GoodsProperty> list=goodsDao.queryByProId(proId);
+        return list;
+    }
 }

@@ -1,6 +1,7 @@
 package com.fh.controller;
 
 import com.fh.entity.po.Goods;
+import com.fh.entity.po.GoodsProperty;
 import com.fh.entity.vo.BrandParams;
 import com.fh.entity.vo.PageResult;
 import com.fh.entity.vo.ResultData;
@@ -8,6 +9,8 @@ import com.fh.service.GoodsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 @RestController
 @RequestMapping("GoodsController")
 @CrossOrigin
@@ -48,5 +51,10 @@ public class GoodsController {
     public ResultData addGoodsOrProper(Goods goods,String noSku,String sku){
         goodsService.addGoodsOrProper(goods,noSku,sku);
         return ResultData.success(null);
+    }
+    @GetMapping("queryByProId")
+    public ResultData queryByProId(Integer proId){
+        List<GoodsProperty> list =goodsService.queryByProId(proId);
+        return ResultData.success(list);
     }
 }

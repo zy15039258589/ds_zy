@@ -37,4 +37,7 @@ public interface GoodsDao {
             "</foreach>"+
             "</script>")
     void addGoodsOrProper(List<GoodsProperty> list);
+
+    @Select("select * from ds_goods_property where proId=#{proId}")
+    List<GoodsProperty> queryByProId(Integer proId);
 }
