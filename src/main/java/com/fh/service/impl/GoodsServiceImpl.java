@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -91,5 +92,19 @@ public class GoodsServiceImpl implements GoodsService {
     public List<GoodsProperty> queryByProId(Integer proId) {
         List<GoodsProperty> list=goodsDao.queryByProId(proId);
         return list;
+    }
+
+    @Override
+    @Transactional  //加上事务   什么是事务
+    public void updateGoodsOrProper(GoodsProperty goodsProperty) {
+            //先把之前的删除
+        goodsDao.deleteGoodsOrProper(goodsProperty);
+        //goodsDao.
+    }
+
+    @Override
+    public Map huixianGoodsProperty(Integer proId) {
+
+        return null;
     }
 }

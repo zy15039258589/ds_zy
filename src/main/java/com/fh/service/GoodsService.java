@@ -6,6 +6,7 @@ import com.fh.entity.vo.BrandParams;
 import com.fh.entity.vo.PageResult;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GoodsService {
     void addGoods(Goods goods);
@@ -19,4 +20,8 @@ public interface GoodsService {
     void addGoodsOrProper(Goods goods, String noSku, String sku);
 
     List<GoodsProperty> queryByProId(Integer proId);
+
+    void updateGoodsOrProper(GoodsProperty goodsProperty);
+
+    Map huixianGoodsProperty(Integer proId);
 }

@@ -27,8 +27,8 @@ public interface GoodsDao {
     @Select("<script>" +
             "select * from ds_goods where 1=1" +
             "<if test='name!=null and name!=&quot;&quot;'>and name=#{name} </if>"+
-            " limit  #{startIndex},#{limit}"+
-            "</script>")
+            "  order by id desc limit  #{startIndex},#{limit}"+
+            " </script>")
     List<Goods> selectGoodsList(BrandParams params);
 
 
@@ -40,4 +40,6 @@ public interface GoodsDao {
 
     @Select("select * from ds_goods_property where proId=#{proId}")
     List<GoodsProperty> queryByProId(Integer proId);
+    @Delete("delete from ds_goods_property where proId=#{proId}")
+    void deleteGoodsOrProper(GoodsProperty goodsProperty);
 }
